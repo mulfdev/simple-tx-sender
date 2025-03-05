@@ -1,0 +1,29 @@
+{
+    "name": "ts-starter",
+    "version": "1.0.1",
+    "description": "",
+    "type": "module",
+    "scripts": {
+        "build": "tsc",
+        "start": "tsc && node ./dist/main.js",
+        "dev": "tsx watch ./src/main.ts",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "mulf",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/node": "^20",
+        "prettier": "^3.5.3",
+        "tsx": "^4.19.2",
+        "typescript": "^5.8.2"
+    },
+    "dependencies": {
+        "@wagmi/connectors": "^5.7.8",
+        "@wagmi/core": "^2.16.5",
+        "dotenv": "^16.4.7",
+        "install": "^0.13.0",
+        "npm": "^11.2.0",
+        "viem": "^2.23.6"
+    }
+}
