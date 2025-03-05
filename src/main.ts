@@ -34,7 +34,7 @@ try {
     CronJob.from({
         cronTime: '0 */2 * * * *',
         onTick: async () => {
-            console.log('You will see this message every second');
+            console.log('You will see this message every two mins');
 
             const client = createWalletClient({
                 account,
