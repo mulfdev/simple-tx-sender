@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import { CronJob } from 'cron';
 import { createWalletClient, http, type Chain } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { treasureTopaz, treasure } from 'viem/chains';
@@ -30,19 +31,28 @@ switch (networkArg) {
 }
 
 try {
-    const client = createWalletClient({
-        account,
-        chain: network,
-        transport: http(),
-    });
+    CronJob.from({
+        cronTime: '0 */2 * * * *',
+        onTick: async () => {
+            console.log('You will see this message every second');
 
-    const hash = await client.sendTransaction({
-        account,
-        to: account.address,
-        value: 0n,
-    });
+            const client = createWalletClient({
+                account,
+                chain: network,
+                transport: http(),
+            });
 
-    console.log('Tx sent:', hash);
+            const hash = await client.sendTransaction({
+                account,
+                to: account.address,
+                value: 0n,
+            });
+
+            console.log('Tx sent:', hash);
+        },
+        start: true,
+        timeZone: 'America/Los_Angeles',
+    });
 } catch (e) {
     if (e instanceof Error) {
         console.error(e.message);
